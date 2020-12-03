@@ -54,12 +54,12 @@ namespace TerrariaLocalizationPacker {
 			
 			// Disable drag/drop text in textboxes so you can scroll their contents easily
 			DataObject.AddCopyingHandler(textBoxExe, OnTextBoxCancelDrag);
-			DataObject.AddCopyingHandler(textBoxOutput, OnTextBoxCancelDrag);
+			//DataObject.AddCopyingHandler(textBoxOutput, OnTextBoxCancelDrag);
 			DataObject.AddCopyingHandler(textBoxInput, OnTextBoxCancelDrag);
 			
 			// Remove quotes from "Copy Path" command on paste
 			DataObject.AddPastingHandler(textBoxExe, OnTextBoxQuotesPaste);
-			DataObject.AddPastingHandler(textBoxOutput, OnTextBoxQuotesPaste);
+			//DataObject.AddPastingHandler(textBoxOutput, OnTextBoxQuotesPaste);
 			DataObject.AddPastingHandler(textBoxInput, OnTextBoxQuotesPaste);
 		}
 
@@ -77,14 +77,24 @@ namespace TerrariaLocalizationPacker {
 				}
 			}
 			LocalizationPacker.OutputDirectory = Settings.Default.OutputDirectory;
-			if (string.IsNullOrEmpty(LocalizationPacker.OutputDirectory))
-				LocalizationPacker.OutputDirectory = LocalizationPacker.AppDirectory;
-			LocalizationPacker.InputDirectory = Settings.Default.InputDirectory;
-			if (string.IsNullOrEmpty(LocalizationPacker.InputDirectory))
-				LocalizationPacker.InputDirectory = LocalizationPacker.AppDirectory;
+			//if (string.IsNullOrEmpty(LocalizationPacker.OutputDirectory))
+			//	LocalizationPacker.OutputDirectory = LocalizationPacker.AppDirectory;
+
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Game.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Game);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Items.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Items);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Legacy.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Legacy);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.NPCs.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_NPCs);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Projectiles.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Projectiles);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Town.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Town);
+
+
+			LocalizationPacker.InputDirectory = LocalizationPacker.AppDirectory;
+			//if (string.IsNullOrEmpty(LocalizationPacker.InputDirectory))
+			//	LocalizationPacker.InputDirectory = LocalizationPacker.AppDirectory;
 
 			textBoxExe.Text = LocalizationPacker.ExePath;
-			textBoxOutput.Text = LocalizationPacker.OutputDirectory;
+			//textBoxOutput.Text = LocalizationPacker.OutputDirectory;
 			textBoxInput.Text = LocalizationPacker.InputDirectory;
 		}
 		/**<summary>Saves the application settings.</summary>*/
@@ -180,7 +190,16 @@ namespace TerrariaLocalizationPacker {
 			try {
 				bool filesFound = LocalizationPacker.Repack();
 				if (filesFound)
+                {
 					TriggerMessageBox.Show(this, MessageIcon.Info, "Localizations successfully repacked!", "Localizations Repacked");
+					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.json");
+					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Game.json");
+					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Items.json");
+					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Legacy.json");
+					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.NPCs.json");
+					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Projectiles.json");
+					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Town.json");
+				}
 				else
 					TriggerMessageBox.Show(this, MessageIcon.Info, "No localization files with the correct names were found in the Repack folder!", "No Localizations");
 			}
@@ -202,7 +221,7 @@ namespace TerrariaLocalizationPacker {
 						FileInfo exeInfo = new FileInfo(LocalizationPacker.ExePath);
 						needsRestore = (exeInfo.Length == 0);
 					}
-					catch (Exception ex) {
+					catch (Exception) {
 						// file may still be in-use... wait a bit longer in the future?
 					}
 				}
@@ -211,7 +230,7 @@ namespace TerrariaLocalizationPacker {
 						LocalizationPacker.Restore();
 						restored = true;
 					}
-					catch (Exception ex) {
+					catch (Exception) {
 						// No harm done if we wait for the user to restore later.
 					}
 				}
@@ -294,7 +313,7 @@ namespace TerrariaLocalizationPacker {
 			var result = browser.ShowFolderBrowser(this);
 			if (result.HasValue && result.Value) {
 				LocalizationPacker.OutputDirectory = browser.SelectedPath;
-				textBoxOutput.Text = browser.SelectedPath;
+				//textBoxOutput.Text = browser.SelectedPath;
 			}
 			browser.Dispose();
 			browser = null;
@@ -317,7 +336,7 @@ namespace TerrariaLocalizationPacker {
 			LocalizationPacker.ExePath = textBoxExe.Text;
 		}
 		private void OnOutputChanged(object sender, TextChangedEventArgs e) {
-			LocalizationPacker.OutputDirectory = textBoxOutput.Text;
+			//LocalizationPacker.OutputDirectory = textBoxOutput.Text;
 		}
 		private void OnInputChanged(object sender, TextChangedEventArgs e) {
 			LocalizationPacker.InputDirectory = textBoxInput.Text;

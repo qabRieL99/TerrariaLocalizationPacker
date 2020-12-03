@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         Title="Credits" Background="#FFF0F0F0" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" SnapsToDevicePixels="True" UseLayoutRounding="True" Icon="/TerrariaLocalizationPacker;component/Resources/Icons/Credits.png" SizeToContent="WidthAndHeight">
-    
-    <Grid Height="149" Width="320">
+
+    <Grid Height="299" Width="320">
         <StackPanel Margin="10,10,10,37">
             <TextBlock TextWrapping="Wrap" Padding="5">
-                Patching capabilities thanks to  <Hyperlink NavigateUri="https://github.com/dougbenham/TerrariaPatcher" RequestNavigate="OnRequestNavigate">TerrariaPatcher</Hyperlink> and <Hyperlink NavigateUri="http://www.mono-project.com/docs/tools+libraries/libraries/Mono.Cecil/" RequestNavigate="OnRequestNavigate">Mono.Cecil</Hyperlink>.
+                Yamalama yeteneği için <Hyperlink NavigateUri="https://github.com/dougbenham/TerrariaPatcher" RequestNavigate="OnRequestNavigate">TerrariaPatcher</Hyperlink> ve <Hyperlink NavigateUri="http://www.mono-project.com/docs/tools+libraries/libraries/Mono.Cecil/" RequestNavigate="OnRequestNavigate">Mono.Cecil</Hyperlink> programlarına teşekkürler.
             </TextBlock>
             <Separator Height="11" Margin="20,0">
                 <Separator.Background>
@@ -19,10 +19,40 @@
             </Separator>
 
             <TextBlock TextWrapping="Wrap" Padding="5">
-                Most icons from or modified from <Hyperlink NavigateUri="http://p.yusukekamiyamane.com/" RequestNavigate="OnRequestNavigate">Fugue Icon Pack</Hyperlink>.
+                Birçok simge ya <Hyperlink NavigateUri="http://p.yusukekamiyamane.com/" RequestNavigate="OnRequestNavigate">Fugue Icon Pack</Hyperlink>'dan ya da ordan alınıp değiştirilmiş halleri..
             </TextBlock>
+
+
+            <Separator Height="11" Margin="20,0">
+                <Separator.Background>
+                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                        <GradientStop Color="#FFA0A0A0" Offset="0"/>
+                        <GradientStop Color="#00A0A0A0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Separator.Background>
+            </Separator>
+
+            <TextBlock TextWrapping="Wrap" Padding="5">
+				Terraria Localization Packer adı altında orijinal kod ve tasarım <Hyperlink NavigateUri="https://github.com/trigger-segfault/TerrariaLocalizationPacker" RequestNavigate="OnRequestNavigate">Robert 'trigger-segfault' Jordan</Hyperlink> tarafından yapılmıştır.
+            </TextBlock>
+
+
+            <Separator Height="11" Margin="20,0">
+                <Separator.Background>
+                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                        <GradientStop Color="#FFA0A0A0" Offset="0"/>
+                        <GradientStop Color="#00A0A0A0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Separator.Background>
+            </Separator>
+
+
+            <TextBlock TextWrapping="Wrap" Padding="5">
+			Terraria oyunun Türkçe çevirisi, oyun-içi yazı tiplerinin düzenlenmesi ve programın Türkçe çeviri kurma programı haline değiştirilmesi ise <Hyperlink NavigateUri="https://github.com/qabRieL99/TerrariaTurkish" RequestNavigate="OnRequestNavigate">qabRieL99</Hyperlink> tarafından yapılmıştır.
+            </TextBlock>
+
+
         </StackPanel>
-        
-        <Button Content="Close" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="80" IsDefault="True" IsCancel="True"/>
+        <Button Content="Kapat" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="80" IsDefault="True" IsCancel="True"/>
     </Grid>
 </Window>

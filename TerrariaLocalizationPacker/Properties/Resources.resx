@@ -157,6 +157,27 @@
   <data name="TerrariaIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\TerrariaIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Terraria_Localization_Content_en_US" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Terraria.Localization.Content.en-US.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Terraria_Localization_Content_en_US_Game" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Terraria.Localization.Content.en-US.Game.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Terraria_Localization_Content_en_US_Items" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Terraria.Localization.Content.en-US.Items.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Terraria_Localization_Content_en_US_Legacy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Terraria.Localization.Content.en-US.Legacy.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Terraria_Localization_Content_en_US_NPCs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Terraria.Localization.Content.en-US.NPCs.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Terraria_Localization_Content_en_US_Projectiles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Terraria.Localization.Content.en-US.Projectiles.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Terraria_Localization_Content_en_US_Town" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Terraria.Localization.Content.en-US.Town.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="VariableList" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\VariableList.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
