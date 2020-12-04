@@ -40,9 +40,7 @@ namespace TerrariaLocalizationPacker {
 
 		#endregion
 		//=========== MEMBERS ============
-		#region Members
-
-		#endregion
+	
 		//========= CONSTRUCTORS =========
 		#region Constructors
 
@@ -52,15 +50,9 @@ namespace TerrariaLocalizationPacker {
 
 			LoadSettings();
 			
-			// Disable drag/drop text in textboxes so you can scroll their contents easily
 			DataObject.AddCopyingHandler(textBoxExe, OnTextBoxCancelDrag);
-			//DataObject.AddCopyingHandler(textBoxOutput, OnTextBoxCancelDrag);
-			DataObject.AddCopyingHandler(textBoxInput, OnTextBoxCancelDrag);
 			
-			// Remove quotes from "Copy Path" command on paste
 			DataObject.AddPastingHandler(textBoxExe, OnTextBoxQuotesPaste);
-			//DataObject.AddPastingHandler(textBoxOutput, OnTextBoxQuotesPaste);
-			DataObject.AddPastingHandler(textBoxInput, OnTextBoxQuotesPaste);
 		}
 
 		#endregion
@@ -77,25 +69,8 @@ namespace TerrariaLocalizationPacker {
 				}
 			}
 			LocalizationPacker.OutputDirectory = Settings.Default.OutputDirectory;
-			//if (string.IsNullOrEmpty(LocalizationPacker.OutputDirectory))
-			//	LocalizationPacker.OutputDirectory = LocalizationPacker.AppDirectory;
-
-			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US);
-			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Game.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Game);
-			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Items.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Items);
-			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Legacy.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Legacy);
-			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.NPCs.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_NPCs);
-			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Projectiles.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Projectiles);
-			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Town.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Town);
-
-
 			LocalizationPacker.InputDirectory = LocalizationPacker.AppDirectory;
-			//if (string.IsNullOrEmpty(LocalizationPacker.InputDirectory))
-			//	LocalizationPacker.InputDirectory = LocalizationPacker.AppDirectory;
-
 			textBoxExe.Text = LocalizationPacker.ExePath;
-			//textBoxOutput.Text = LocalizationPacker.OutputDirectory;
-			textBoxInput.Text = LocalizationPacker.InputDirectory;
 		}
 		/**<summary>Saves the application settings.</summary>*/
 		private void SaveSettings() {
@@ -110,17 +85,17 @@ namespace TerrariaLocalizationPacker {
 		/**<summary>Checks if the path is valid.</summary>*/
 		private bool ValidPathTest(bool checkExists = true) {
 			if (LocalizationPacker.ExePath == "") {
-				TriggerMessageBox.Show(this, MessageIcon.Warning, "The Terraria path cannot be empty!", "Invalid Path");
+				TriggerMessageBox.Show(this, MessageIcon.Warning, "Terraria konumu boş olamaz!", "Hatalı Konum");
 				return false;
 			}
 			try {
 				if (!File.Exists(LocalizationPacker.ExePath) && checkExists) {
-					TriggerMessageBox.Show(this, MessageIcon.Warning, "Could not find Terraria executable!", "Missing Exe");
+					TriggerMessageBox.Show(this, MessageIcon.Warning, "Terraria uygulaması bulunamadı!", "Uygulama Dosyası Yok");
 					return false;
 				}
 			}
 			catch (ArgumentException) {
-				TriggerMessageBox.Show(this, MessageIcon.Warning, "You must enter a valid Terraria path!", "Invalid Path");
+				TriggerMessageBox.Show(this, MessageIcon.Warning, "Doğru bir Terraria konumu girmen gerekiyor!", "Hatalı Konum");
 				return false;
 			}
 			
@@ -184,14 +159,17 @@ namespace TerrariaLocalizationPacker {
 			MessageBoxResult result;
 			if (!ValidPathTest() || !ValidPathTest2(true))
 				return;
-			result = TriggerMessageBox.Show(this, MessageIcon.Question, "Are you sure you want to repack localizations into the current Terraria executable?", "Repack Localizations", MessageBoxButton.YesNo);
-			if (result == MessageBoxResult.No)
-				return;
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Game.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Game);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Items.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Items);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Legacy.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Legacy);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.NPCs.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_NPCs);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Projectiles.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Projectiles);
+			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Town.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Town);
 			try {
 				bool filesFound = LocalizationPacker.Repack();
 				if (filesFound)
                 {
-					TriggerMessageBox.Show(this, MessageIcon.Info, "Localizations successfully repacked!", "Localizations Repacked");
 					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.json");
 					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Game.json");
 					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Items.json");
@@ -199,6 +177,7 @@ namespace TerrariaLocalizationPacker {
 					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.NPCs.json");
 					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Projectiles.json");
 					File.Delete(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Town.json");
+					TriggerMessageBox.Show(this, MessageIcon.Info, "Yama başarıyla kuruldu!", "Başarılı");
 				}
 				else
 					TriggerMessageBox.Show(this, MessageIcon.Info, "No localization files with the correct names were found in the Repack folder!", "No Localizations");
@@ -234,49 +213,30 @@ namespace TerrariaLocalizationPacker {
 						// No harm done if we wait for the user to restore later.
 					}
 				}
-				result = TriggerMessageBox.Show(this, MessageIcon.Error, "An error occurred while repacking localizations! Would you like to see the error?", "Repack Error", MessageBoxButton.YesNo);
+				result = TriggerMessageBox.Show(this, MessageIcon.Error, "Yama kurulurken bir hata oluştu! Hatayı görmek ister misin?", "Yama Hatası", MessageBoxButton.YesNo);
 				if (result == MessageBoxResult.Yes)
 					ErrorMessageBox.Show(ex, true);
 				return;
 			}
 		}
-		private void OnUnpack(object sender, RoutedEventArgs e) {
-			MessageBoxResult result = MessageBoxResult.No;
-			if (!ValidPathTest() || !ValidPathTest2(false))
-				return;
-			result = TriggerMessageBox.Show(this, MessageIcon.Question, "Are you sure you want to unpack localizations from the current Terraria executable?", "Unpack Localizations", MessageBoxButton.YesNo);
-			if (result == MessageBoxResult.No)
-				return;
-			try {
-				LocalizationPacker.Unpack();
-				result = TriggerMessageBox.Show(this, MessageIcon.Info, "Localizations successfully unpacked! Would you like to open the output folder?", "Localizations Unpacked", MessageBoxButton.YesNo);
-				if (result == MessageBoxResult.Yes)
-					Process.Start(LocalizationPacker.OutputDirectory);
-			}
-			catch (Exception ex) {
-				result = TriggerMessageBox.Show(this, MessageIcon.Error, "An error occurred while unpacking localizations! Would you like to see the error?", "Unpack Error", MessageBoxButton.YesNo);
-				if (result == MessageBoxResult.Yes)
-					ErrorMessageBox.Show(ex, true);
-				return;
-			}
-		}
+
 		private void OnRestore(object sender, RoutedEventArgs e) {
 			MessageBoxResult result;
 			if (!ValidPathTest(false))
 				return;
-			result = TriggerMessageBox.Show(this, MessageIcon.Question, "Are you sure you want to restore the current Terraria executable to its backup?", "Restore Terraria", MessageBoxButton.YesNo);
+			result = TriggerMessageBox.Show(this, MessageIcon.Question, "Yamayı kaldırmak istediğine emin misin?", "Yamayı Kaldır", MessageBoxButton.YesNo);
 			if (result == MessageBoxResult.No)
 				return;
 			if (!File.Exists(LocalizationPacker.BackupPath)) {
-				TriggerMessageBox.Show(this, MessageIcon.Warning, "Could not find Terraria backup!", "Missing Backup");
+				TriggerMessageBox.Show(this, MessageIcon.Warning, "Yedek bulunamadı!", "Kayıp Yedek");
 				return;
 			}
 			try {
 				LocalizationPacker.Restore();
-				TriggerMessageBox.Show(this, MessageIcon.Info, "Terraria successfully restored!", "Terraria Restored");
+				TriggerMessageBox.Show(this, MessageIcon.Info, "Başarıyla kaldırıldı!", "Kaldırıldı");
 			}
 			catch (Exception ex) {
-				result = TriggerMessageBox.Show(this, MessageIcon.Error, "An error occurred while restoring Terraria! Would you like to see the error?", "Restore Error", MessageBoxButton.YesNo);
+				result = TriggerMessageBox.Show(this, MessageIcon.Error, "Yama kaldırılırken bir sorun oluştu! Hatayı görmek ister misin?", "Kaldırma Hatası", MessageBoxButton.YesNo);
 				if (result == MessageBoxResult.Yes)
 					ErrorMessageBox.Show(ex, true);
 			}
@@ -289,10 +249,10 @@ namespace TerrariaLocalizationPacker {
 		private void OnBrowseExe(object sender, RoutedEventArgs e) {
 			OpenFileDialog fileDialog = new OpenFileDialog();
 
-			fileDialog.Title = "Find Terraria Executable";
+			fileDialog.Title = "Terraria .exesini bul";
 			fileDialog.AddExtension = true;
 			fileDialog.DefaultExt = ".exe";
-			fileDialog.Filter = "Executables (*.exe)|*.exe|All Files (*.*)|*.*";
+			fileDialog.Filter = "Uygulamalar (*.exe)|*.exe|Tüm Dosyalar (*.*)|*.*";
 			fileDialog.FilterIndex = 0;
 			fileDialog.CheckFileExists = true;
 			if (LocalizationPacker.ExePath != "")
@@ -305,114 +265,25 @@ namespace TerrariaLocalizationPacker {
 				SaveSettings();
 			}
 		}
-		private void OnBrowseOutput(object sender, RoutedEventArgs e) {
-			FolderBrowserDialog browser = new FolderBrowserDialog();
-			browser.Description = "Choose output folder";
-			browser.SelectedPath = LocalizationPacker.OutputDirectory;
-			browser.ShowNewFolderButton = true;
-			var result = browser.ShowFolderBrowser(this);
-			if (result.HasValue && result.Value) {
-				LocalizationPacker.OutputDirectory = browser.SelectedPath;
-				//textBoxOutput.Text = browser.SelectedPath;
-			}
-			browser.Dispose();
-			browser = null;
-		}
-		private void OnBrowseInput(object sender, RoutedEventArgs e) {
-			FolderBrowserDialog browser = new FolderBrowserDialog();
-			browser.Description = "Choose input folder";
-			browser.SelectedPath = LocalizationPacker.InputDirectory;
-			browser.ShowNewFolderButton = true;
-			var result = browser.ShowFolderBrowser(this);
-			if (result.HasValue && result.Value) {
-				LocalizationPacker.InputDirectory = browser.SelectedPath;
-				textBoxInput.Text = browser.SelectedPath;
-			}
-			browser.Dispose();
-			browser = null;
-		}
+		
 
 		private void OnExeChanged(object sender, TextChangedEventArgs e) {
 			LocalizationPacker.ExePath = textBoxExe.Text;
 		}
 		private void OnOutputChanged(object sender, TextChangedEventArgs e) {
-			//LocalizationPacker.OutputDirectory = textBoxOutput.Text;
 		}
 		private void OnInputChanged(object sender, TextChangedEventArgs e) {
-			LocalizationPacker.InputDirectory = textBoxInput.Text;
 		}
 
 		#endregion
 		//--------------------------------
 		#region Menu Items
 
-		private void OnLaunchTerraria(object sender, RoutedEventArgs e) {
-			try {
-				if (File.Exists(LocalizationPacker.ExePath)) {
-					Process.Start(LocalizationPacker.ExePath);
-					ProcessStartInfo start = new ProcessStartInfo();
-					start.FileName = LocalizationPacker.ExePath;
-					start.Arguments = TerrariaLocator.FindTerraLauncherSaveDirectory(LocalizationPacker.ExePath);
-					start.WorkingDirectory = LocalizationPacker.ExeDirectory;
-					Process.Start(start);
-				}
-				else {
-					TriggerMessageBox.Show(this, MessageIcon.Warning, "Could not locate the Terraria executable! Cannot launch Terraria.", "Missing Executable");
-				}
-			}
-			catch {
-				TriggerMessageBox.Show(this, MessageIcon.Warning, "The current path to Terraria is invalid! Cannot launch Terraria.", "Invalid Path");
-			}
-		}
-		private void OnOpenTerrariaFolder(object sender, RoutedEventArgs e) {
-			try {
-				if (Directory.Exists(LocalizationPacker.ExeDirectory))
-					Process.Start(LocalizationPacker.ExeDirectory);
-				else
-					TriggerMessageBox.Show(this, MessageIcon.Warning, "Could not locate the Terraria folder! Cannot open folder.", "Missing Folder");
-			}
-			catch {
-				TriggerMessageBox.Show(this, MessageIcon.Warning, "The current path to Terraria is invalid! Cannot open folder.", "Invalid Path");
-			}
-		}
-		private void OnOpenOutputFolder(object sender, RoutedEventArgs e) {
-			try {
-				if (Directory.Exists(LocalizationPacker.OutputDirectory))
-					Process.Start(LocalizationPacker.OutputDirectory);
-				else
-					TriggerMessageBox.Show(this, MessageIcon.Warning, "Could not locate the Output folder! Cannot open folder.", "Missing Folder");
-			}
-			catch {
-				TriggerMessageBox.Show(this, MessageIcon.Warning, "The current path to Output is invalid! Cannot open folder.", "Invalid Path");
-			}
-		}
-		private void OnOpenInputFolder(object sender, RoutedEventArgs e) {
-			try {
-				if (Directory.Exists(LocalizationPacker.InputDirectory))
-					Process.Start(LocalizationPacker.InputDirectory);
-				else
-					TriggerMessageBox.Show(this, MessageIcon.Warning, "Could not locate the Input folder! Cannot open folder.", "Missing Folder");
-			}
-			catch {
-				TriggerMessageBox.Show(this, MessageIcon.Warning, "The current path to Input is invalid! Cannot open folder.", "Invalid Path");
-			}
-		}
-		private void OnExit(object sender, RoutedEventArgs e) {
-			Close();
-		}
-
-		private void OnAbout(object sender, RoutedEventArgs e) {
-			AboutWindow.Show(this);
-		}
-		private void OnHelp(object sender, RoutedEventArgs e) {
-			Process.Start("https://github.com/trigger-death/TerrariaLocalizationPacker/wiki");
-		}
+		
 		private void OnCredits(object sender, RoutedEventArgs e) {
 			CreditsWindow.Show(this);
 		}
-		private void OnViewOnGitHub(object sender, RoutedEventArgs e) {
-			Process.Start("https://github.com/trigger-death/TerrariaLocalizationPacker");
-		}
+
 
 		#endregion
 		//--------------------------------
