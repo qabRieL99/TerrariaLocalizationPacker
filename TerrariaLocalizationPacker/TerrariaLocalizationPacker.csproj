@@ -147,6 +147,7 @@
     <None Include="Resources\Terraria.Localization.Content.en-US.NPCs.json" />
     <None Include="Resources\Terraria.Localization.Content.en-US.Projectiles.json" />
     <None Include="Resources\Terraria.Localization.Content.en-US.Town.json" />
+    <None Include="Resources\TerrariaFontTR.zip" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

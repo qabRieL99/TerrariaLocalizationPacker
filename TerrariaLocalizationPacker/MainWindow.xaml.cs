@@ -166,6 +166,7 @@ namespace TerrariaLocalizationPacker {
 			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.NPCs.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_NPCs);
 			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Projectiles.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Projectiles);
 			File.WriteAllBytes(LocalizationPacker.AppDirectory + "/Terraria.Localization.Content.en-US.Town.json", TerrariaLocalizationPacker.Properties.Resources.Terraria_Localization_Content_en_US_Town);
+			File.WriteAllBytes(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/My Games/Terraria/ResourcePacks/TerrariaFontTR.zip", TerrariaLocalizationPacker.Properties.Resources.TerrariaFontTR);
 			try {
 				bool filesFound = LocalizationPacker.Repack();
 				if (filesFound)

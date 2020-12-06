@@ -251,6 +251,16 @@ namespace TerrariaLocalizationPacker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TerrariaFontTR {
+            get {
+                object obj = ResourceManager.GetObject("TerrariaFontTR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap TerrariaIcon {
